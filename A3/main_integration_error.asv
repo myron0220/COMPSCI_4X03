@@ -1,0 +1,48 @@
+% p5 (a)
+hs = [];
+e_mids = [];
+e_tras = [];
+e_sims = [];
+
+f = @(x) exp(1) .^ (- (x.^2));
+a = 0;
+b = 1;
+for i = 1 : 10
+    n = 2 ^ i;
+
+    h = (b - a) / n;
+    hs = [hs ; h];
+
+    r_mid = 2/sqrt(pi) * midpoint( f, a, b, n );
+    r_tra = 2/sqrt(pi) * trapezoid( f, a, b, n );
+    [r_sim, ~] = simpson(f, a, b, n);
+    r_sim = 2/sqrt(pi) * r_sim;
+    e_mid = abs(r_mid - erf(1));
+    e_tra = abs(r_tra - erf(1));
+    e_sim = abs(r_sim - erf(1));
+    e_mids = [e_mids ; e_mid];
+    e_tras = [e_tras ; e_tra];
+    e_sims = [e_sims ; e_sim];
+    loglog(hs, e_mids, 'o');
+    hold on;
+    loglog(hs, e_tras, '+');
+    hold on;
+    loglog(hs, e_sims, '*');
+    xlabel("h");
+    ylabel("error");
+end
+
+% p5 (b)
+[m, ~] = size(hs);
+A = [ones(m,1), log(hs)];
+
+
+
+
+% estimate for midpoint
+b_mid = log(e_mids);
+ = A \ b
+% logc = res(0)
+
+
+

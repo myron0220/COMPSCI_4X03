@@ -1,0 +1,176 @@
+\documentclass[11pt,fleqn]{article}
+
+\setlength {\topmargin} {-.15in}
+\setlength {\textheight} {8.6in}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,arrows}
+\usepackage{diagbox}
+\usepackage{stackrel}
+
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\labelenumiii}{\theenumiii.}
+\newcommand{\be}{\begin{enumerate}}
+	\newcommand{\ee}{\end{enumerate}}
+\newcommand{\bi}{\begin{itemize}}
+	\newcommand{\ei}{\end{itemize}}
+\newcommand{\bc}{\begin{center}}
+	\newcommand{\ec}{\end{center}}
+\newcommand{\bsp}{\begin{sloppypar}}
+	\newcommand{\esp}{\end{sloppypar}}
+\newcommand{\mname}[1]{\mbox{\sf #1}}
+\newcommand{\sB}{\mbox{$\cal B$}}
+\newcommand{\sC}{\mbox{$\cal C$}}
+\newcommand{\sF}{\mbox{$\cal F$}}
+\newcommand{\sM}{\mbox{$\cal M$}}
+\newcommand{\sP}{\mbox{$\cal P$}}
+\newcommand{\sV}{\mbox{$\cal V$}}
+\newcommand{\set}[1]{{\{ #1 \}}}
+\newcommand{\Neg}{\neg} 
+\ifdefined \And 
+\renewcommand{\And}{\wedge}
+\else
+\newcommand{\And}{\wedge}
+\fi
+\newcommand{\Or}{\vee}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\Iff}{\Leftrightarrow}
+\newcommand{\Forall}{\forall}
+\newcommand{\ForallApp}{\forall\,}
+\newcommand{\Forsome}{\exists}
+\newcommand{\ForsomeApp}{\exists\,}
+\newcommand{\mdot}{\mathrel.}
+\newcommand{\der}[2]{\stackrel[#2]{#1}{\longrightarrow}}
+\newcommand{\nt}[1]{\seq{\texttt{#1}}}
+\newcommand{\seq}[1]{{\langle #1 \rangle}}
+\newcommand{\sglsp}{\ }
+\newcommand{\dblsp}{\ \ }
+\newenvironment{proof}{\par\noindent{\bf Proof\sglsp}}{\hfill$\Box$}
+\newcommand{\pnote}[1]{{\langle \text{#1} \rangle}}
+
+\begin{document}
+	
+	\begin{center}
+		
+		{\large \textbf{COMPSCI/SFWRENG 2FA3}}\\[2mm]
+		{\huge \textbf{Assignment 1}}\\[6mm]
+		{\large \textbf{Dr.~William M. Farmer and Dr.~Mehrnoosh Askarpour}}\\[2mm]
+		{\large \textbf{McMaster University}}\\[6mm]
+		{\large Revised: March 28, 2021}
+		
+	\end{center}
+	
+	\medskip
+	
+	Assignment 8 consists of two problems.  You must write your solutions
+	to the problems using LaTeX.
+	
+	Please submit Assignment~8 as two files,
+	\texttt{Assignment\_8\_\emph{YourMacID}.tex} and
+	\texttt{Assignment\_8\_\emph{YourMacID}.pdf}, to the Assignment~8
+	folder on Avenue under Assessments/Assignments.
+	\texttt{\emph{YourMacID}} must be your personal MacID (written without
+	capitalization).  The \texttt{Assignment\_8\_\emph{YourMacID}.tex}
+	file is a copy of the LaTeX source file for this assignment
+	(\texttt{Assignment\_8.tex} found on Avenue under
+	Contents/Assignments) with your solution entered after each problem.
+	The \texttt{Assignment\_8\_\emph{YourMacID}.pdf} is the PDF output
+	produced by executing
+	
+	\begin{itemize}
+		
+		\item[] \texttt{pdflatex Assignment\_8\_\emph{YourMacID}}
+		
+	\end{itemize}
+	
+	This assignment is due \textbf{Sunday, March 28, 2021 before
+		midnight.}  You are allow to submit the assignment multiple times,
+	but only the last submission will be marked.  \textbf{Late submissions
+		and files that are not named exactly as specified above will not be
+		accepted!}  It is suggested that you submit your preliminary
+	\texttt{Assignment\_8\_\emph{YourMacID}.tex} and
+	\texttt{Assignment\_8\_\emph{YourMacID}.pdf} files well before the
+	deadline so that your mark is not zero if, e.g., your computer fails
+	at 11:50 PM on March 28.
+	
+	\textbf{Although you are allowed to receive help from the
+		instructional staff and other students, your submission must be your
+		own work.  Copying will be treated as academic dishonesty! If any of
+		the ideas used in your submission were obtained from other students
+		or sources outside of the lectures and tutorials, you must
+		acknowledge where or from whom these ideas were obtained.}
+	
+	\newpage
+	
+	\subsection*{Problems}
+	
+	\be
+	
+	\item  Construct PDAs for the languages below. For each language, if it is deterministic CFL, then define a DPDA, otherwise an NPDA.
+	\be
+	\item\textbf{[5 points]} $L = \{a^nb^m \mid 1 \le n \le m \}
+$
+	\item\textbf{[5 points]} $L = \{a^nb^m \mid 1 \le n < m \}$
+	\item\textbf{[5 points]} $L = \{a^nb^m \mid 1 \le m \le n \}$
+	\item\textbf{[5 points]} $L = \{a^nb^m \mid 1 \le m < n \}$ 
+	\ee
+	\textcolor{blue}{\textbf{Mingzhe Wang, wangm235, \today}}
+	
+	\subsection*{a.}
+	Note: The language will be accepted by final state.\\
+	Let $M = (Q,\Sigma,\Gamma,\delta,s,\bot,F)$ be the DPDA where:
+	\bi
+	\item[] $Q = \set{q_0,q_1,q_2}$.
+	\item[] $F = \set{q_2}$
+	\item[] $\Sigma = \set{a,b}$.
+	\item[] $\Gamma = \set{\bot,A}$.
+	\item[] $\delta$ contains the following transitions:
+	\be
+	\item[] $((q_0,a,A),\ (q_0,AA))$.
+	\item[] $((q_0,a,\bot),\ (q_0,A\bot))$.
+	\item[] $((q_0,b,A),\ (q_1,\epsilon))$.
+	\item[] $((q_1,b,A),\ (q_1,\epsilon))$.
+	\item[] $((q_1,\epsilon,\bot),\ (q_2,\bot))$.
+	\item[] $((q_2,b,\bot),\ (q_2,\bot))$.
+	
+	\ee
+	\ei
+	The transition diagram is as below:
+	\begin{figure}[hbt!]
+  	\centering
+  	\includegraphics[width=1.0\textwidth]{PDAa.JPG}
+	\end{figure}
+	
+	\subsection*{b.}
+	Note: The language will be accepted by final state.\\
+	Let $M = (Q,\Sigma,\Gamma,\delta,s,\bot,F)$ be the DPDA where:
+	\bi
+	\item[] $Q = \set{q_0,q_1,q_2}$.
+	\item[] $F = \set{q_2}$
+	\item[] $\Sigma = \set{a,b}$.
+	\item[] $\Gamma = \set{\bot,A}$.
+	\item[] $\delta$ contains the following transitions:
+	\be
+	\item[] $((q_0,a,A),\ (q_0,AA))$.
+	\item[] $((q_0,a,\bot),\ (q_0,A\bot))$.
+	\item[] $((q_0,b,A),\ (q_1,\epsilon))$.
+	\item[] $((q_1,b,A),\ (q_1,\epsilon))$.
+	\item[] $((q_1,b,\bot),\ (q_2,\bot))$.
+	\item[] $((q_2,b,\bot),\ (q_2,\bot))$.
+	
+	\ee
+	\ei
+	The transition diagram is as below:
+	\begin{figure}[hbt!]
+  	\centering
+  	\includegraphics[width=1.0\textwidth]{PDAb.JPG}
+	\end{figure}
+	
+
+\end{document}
+
+
