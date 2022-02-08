@@ -1,1 +1,2 @@
-# COMPSCI_4X03
+# COMPSCI_4X03 Scientific Computing
+This is an introductory course to scientific computing. We will study floating-point issues in numerical computing and various numerical algorithms. We will learn about numerical differentiation and integration, solving linear systems, computing eigenvalues, least-squares problems, and numerical methods for ordinary differential equations. This course also gives a brief introduction to deep learning. We will study error analysis, convergence, and stability of numerical algorithms. We will use Matlab as a programming language and environment.
